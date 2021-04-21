@@ -1,0 +1,24 @@
+plugins {
+    id 'java'
+}
+
+group 'com.testninja.webdriver-react-selector'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useTestNG()
+}
+
+jar {
+    baseName 'webdriver-react-selector'
+}
+
+dependencies {
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    testCompile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '4.4.0'
+    testCompile group: 'org.testng', name: 'testng', version: '7.1.0'
+}
