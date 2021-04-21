@@ -28,7 +28,7 @@ ByReact.component("NavLink").state("{ \"title\" : \"Go to home\" }")
 ByReact.component("NavLink").props("{ \"name\" : \"home\" }")state("{ \"title\" : \"Go to home\" }")
 ```
 ## Using Page Objects
-The work in the same way at WebDriver's page object technology, there is a custom `FindBy` 
+This work in the same way as WebDriver's page object technology, there is a custom `FindBy` 
 annotations for ReactWebDriver:
 ```java
 @ByReactComponent.FindBy(
@@ -69,7 +69,7 @@ const App = () => ( <
 ReactDOM.render( <App/> , document.getElementById('root'))
 ```
 
-## To select all <i><b>MyComponent<b><i>
+## To select all <i><b>MyComponent</b></i>
 ```java
  driver.findElements(ByReact.component("MyComponent"))
 ```
@@ -84,7 +84,7 @@ driver.findElements(ByReact.component("My*"))
 ```java
  driver.findElement(ByReact.component("MyComponent").props("{ "\"name\": \"java\" }"))
 ```
-will return the first <b>MyComponent<b>. 
+will return the first <b>MyComponent</b>. 
 ## Filtering by state
 ```java
  driver.findElement(ByReact.component("MyComponent").state("{ "\"id\": \"1\" }"))
@@ -94,7 +94,7 @@ will return the first <b>MyComponent<b>.
  driver.findElement(ByReact.component("MyComponent").props("{ "\"name\": \"java\" }").state("{ "\"id\": \"1\" }"))
 ```
 # Retrieve React Properties from element
-Crete a ReactDriver instance
+Create a ReactDriver instance
 ```java
 ChromeDriver driver = new ChromeDriver();
 ReactWebDriver reactWebdriver = new ReactWebDriver((JavascriptExecutor) driver, "#root");
@@ -118,3 +118,5 @@ and to retrieve the state
 ```java
 assertEquals(component.getState("id"), 1);
 ```
+# Installation
+Will be added soon....
