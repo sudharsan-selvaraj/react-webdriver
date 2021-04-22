@@ -1,4 +1,4 @@
-package com.testninja.reactwebdriver;
+package io.github.reactwebdriver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;

@@ -1,4 +1,4 @@
-package com.testninja.reactwebdriver;
+package io.github.reactwebdriver;
 public class ByReactFactory {
 
     private String rootSelector;

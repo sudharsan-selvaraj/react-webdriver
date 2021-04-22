@@ -1,4 +1,4 @@
-package com.testninja.reactwebdriver;
+package io.github.reactwebdriver;
 
 public class ReactComponentFilter {
     private final String rootSelector, componentName, props, state;

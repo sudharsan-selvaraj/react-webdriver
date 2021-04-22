@@ -1,4 +1,4 @@
-package com.testninja.reactwebdriver;
+package io.github.reactwebdriver;
 
 import org.openqa.selenium.JavascriptExecutor;
 
