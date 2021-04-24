@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'com.testninja.webdriver-react-selector'
+group 'io.github.sudharsanselvaraj'
 version '1.0'
 
 repositories {
