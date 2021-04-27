@@ -27,7 +27,7 @@ jobs:
     # Runs a single command using the runners shell
     - name: Install gpg secret key
       run: |
-        cat <(echo -e "${{ secrets.GPG_SECRET_KEY }}") | gpg --batch --import
+        cat <(echo -e "${{ secrets.GPG_SECRET_KEY }}") | gpg --batch --pinentry-mode loopback --import
     - name: Publish release
       env:
         SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
