@@ -1,8 +1,10 @@
 plugins {
     id 'java'
+    id 'maven-publish'
+    id 'signing'
 }
 
-group 'io.github.sudharsanselvaraj'
+group 'io.github.sudharsan-selvaraj'
 version '1.0'
 
 repositories {
@@ -13,8 +15,64 @@ test {
     useTestNG()
 }
 
-jar {
-    baseName 'webdriver-react-selector'
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = "io.github.sudharsan-selvaraj"
+            artifactId = "react-webdriver"
+            version = "1.0"
+
+            from components.java
+            pom {
+                name = 'react-webdriver'
+                description = 'Library to locate web elements in your REACT app using components, props and states for Selenium java tests'
+                url = 'https://github.com/sudharsan-selvaraj/react-webdriver'
+
+                developers {
+                    developer {
+                        name = 'Sudharsan Selvaraj'
+                        email = 'sudharsanselvaraj.c@gmail.com'
+                        url = 'https://github.com/sudharsan-selvaraj'
+                        id = 'sudharsan-selvaraj'
+                    }
+                }
+                licenses {
+                    license {
+                        name = 'Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        distribution = 'repo'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/sudharsan-selvaraj/react-webdriver'
+                    connection = 'scm:git:ssh://git@github.com:sudharsan-selvaraj/react-webdriver.git'
+                    developerConnection = 'scm:git:ssh://git@github.com:sudharsan-selvaraj/react-webdriver.git'
+                    tag = 'HEAD'
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username project.findProperty("sonatypeUser")?.toString() ?: System.getenv("SONATYPE_USER")
+                password project.findProperty("sonatypePassword")?.toString() ?: System.getenv("SONATYPE_PASSWORD")
+            }
+            def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+        }
+    }
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+
+signing {
+    sign publishing.publications
 }
 
 dependencies {
