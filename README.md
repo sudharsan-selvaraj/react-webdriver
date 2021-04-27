@@ -119,4 +119,17 @@ and to retrieve the state
 assertEquals(component.getState("id"), 1);
 ```
 # Installation
-Will be added soon....
+
+## Maven
+```xml
+<dependency>
+  <groupId>io.github.sudharsan-selvaraj</groupId>
+  <artifactId>react-webdriver</artifactId>
+  <version>1.0</version>
+</dependency>
+```
+
+## Gradle
+```groovy
+implementation group: 'io.github.sudharsan-selvaraj', name: 'react-webdriver', version: '1.0'
+```
