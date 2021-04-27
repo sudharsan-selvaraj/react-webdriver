@@ -27,6 +27,7 @@ jobs:
     # Runs a single command using the runners shell
     - name: Install gpg secret key
       run: |
+        export GPG_TTY=tty
         cat <(echo -e "${{ secrets.GPG_SECRET_KEY }}") | gpg --batch --import
         gpg --export-secret-keys >$HOME/.gnupg/secring.gpg
         gpg --list-secret-keys --keyid-format LONG
