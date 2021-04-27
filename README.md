@@ -82,16 +82,16 @@ driver.findElements(ByReact.component("My*"))
 
 ## Filtering by props
 ```java
- driver.findElement(ByReact.component("MyComponent").props("{ "\"name\": \"java\" }"))
+ driver.findElement(ByReact.component("MyComponent").props("{ \"name\": \"java\" }"))
 ```
 will return the first <b>MyComponent</b>. 
 ## Filtering by state
 ```java
- driver.findElement(ByReact.component("MyComponent").state("{ "\"id\": \"1\" }"))
+ driver.findElement(ByReact.component("MyComponent").state("{ \"id\": \"1\" }"))
 ```
 ## Filtering by both props and state
 ```java
- driver.findElement(ByReact.component("MyComponent").props("{ "\"name\": \"java\" }").state("{ "\"id\": \"1\" }"))
+ driver.findElement(ByReact.component("MyComponent").props("{ \"name\": \"java\" }").state("{ \"id\": \"1\" }"))
 ```
 # Retrieve React Properties from element
 Create a ReactDriver instance
