@@ -28,7 +28,7 @@ jobs:
     - name: Install gpg secret key
       run: |
         cat <(echo -e "${{ secrets.GPG_SECRET_KEY }}") | gpg --batch --import
-        gpg --no-tty --export-secret-keys --pinentry-mode loopback >$HOME/.gnupg/secring.gpg
+        gpg --export-secret-keys > $HOME/.gnupg/secring.gpg
     - name: Publish release
       env:
         SONATYPE_USER: ${{ secrets.SONATYPE_USER }}
