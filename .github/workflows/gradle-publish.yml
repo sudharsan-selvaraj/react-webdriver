@@ -26,6 +26,7 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Install gpg secret key
+      shell: 'script -q -e -c "bash {0}"'
       run: |
         cat <(echo -e "${{ secrets.GPG_SECRET_KEY }}") | gpg --batch --pinentry-mode loopback --import
         gpg --list-secret-keys
