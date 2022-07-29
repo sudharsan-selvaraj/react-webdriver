@@ -74,7 +74,7 @@ public class ByReactComponent extends BaseBy implements IFilterableBy {
                         "    state: arguments[3],\n" +
                         "    context: arguments[4]\n" +
                         "})",
-                rootSelector ,selector, props, state, context);
+                context!=null ? context:  rootSelector ,selector, props, state, context);
 
     }
 
