@@ -34,7 +34,7 @@ public class WebDriverCalculatorAppTest {
     public void setup() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        reactWebDriver = new ReactWebDriver((JavascriptExecutor) driver, "#root");
+        reactWebDriver = new ReactWebDriver(driver, "#root");
         PageFactory.initElements(driver, this);
     }
 
@@ -80,12 +80,9 @@ public class WebDriverCalculatorAppTest {
 
     @Test
     public void testReactWebDriver() {
-        ReactComponent reactComponent = reactWebDriver.getComponent(ByReact.component("t").props("{ \"name\": \"5\" }"));
+        WebElement numberFive = driver.findElement(ByReact.component("t").props("{ \"name\": \"5\" }"));
+        ReactComponent reactComponent = reactWebDriver.getComponent(numberFive);
         assertEquals(reactComponent.getProp("name"), "5");
-
-        /* Get component by index*/
-        ReactComponent fifthComponent = reactWebDriver.getComponent(ByReact.component("t"), 5);
-        assertEquals(fifthComponent.getProp("name"), "%");
     }
 
     @Test

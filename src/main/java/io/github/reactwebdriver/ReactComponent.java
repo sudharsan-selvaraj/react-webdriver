@@ -1,25 +1,20 @@
 package io.github.reactwebdriver;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebElement;
 
 public class ReactComponent {
 
     private JavascriptExecutor jse;
-    private ReactComponentFilter filter;
-    private Integer elementIndex;
+    private SearchContext context;
 
-    public ReactComponent(JavascriptExecutor jse, ReactComponentFilter filter) {
+    public ReactComponent(JavascriptExecutor jse, WebElement element) {
         this.jse = jse;
-        this.filter = filter;
-        elementIndex = 0;
+        this.context = (SearchContext) element;
     }
 
-    public ReactComponent nthIndex(Integer elementIndex) {
-        this.elementIndex = elementIndex;
-        return this;
-    }
-
-    public Object getProps() {
+    public Object getProp() {
         return getComponentDetails("props", "");
     }
 
@@ -27,24 +22,23 @@ public class ReactComponent {
         return getComponentDetails("props", propName);
     }
 
+    public Object getState() {
+        return getComponentDetails("state", "");
+    }
+
+    public Object getState(String stateName) {
+        return getComponentDetails("state", stateName);
+    }
+
 
     private Object getComponentDetails(String objName, String key) {
         return ByReact.executeQuery(jse,
                 ByReact.locatorScript +
                         "return getObjectDetails({" +
-                        "    rootSelector: arguments[0]," +
-                        "    selector: arguments[1]," +
-                        "    props: arguments[2]," +
-                        "    state: arguments[3]," +
-                        "    context: arguments[4]," +
-                        "    elementIndex: arguments[5]," +
-                        "    objectName: arguments[6]," +
-                        "    key: arguments[7]" +
+                        "    context: arguments[0]," +
+                        "    objectName: arguments[1]," +
+                        "    key: arguments[2]" +
                         "})",
-                filter.getRootSelector(),
-                filter.getComponentName(),
-                filter.getProps(),
-                filter.getState(),
-                null, elementIndex, objName, key);
+                this.context, objName, key);
     }
 }

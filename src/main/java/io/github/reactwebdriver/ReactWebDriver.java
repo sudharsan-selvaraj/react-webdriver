@@ -1,15 +1,24 @@
 package io.github.reactwebdriver;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebElement;
 
 public class ReactWebDriver {
 
     private String rootSelector;
 
     private final JavascriptExecutor javascriptExecutor;
+    private final SearchContext context;
 
-    public ReactWebDriver(JavascriptExecutor javascriptExecutor, String rootSelector) {
-        this.javascriptExecutor = javascriptExecutor;
+    public ReactWebDriver(SearchContext context, String rootSelector) {
+        this.context = context;
+        if(context instanceof RemoteWebElement) {
+               this.javascriptExecutor =  ((JavascriptExecutor)((RemoteWebElement) context).getWrappedDriver());
+        } else {
+            this.javascriptExecutor = (JavascriptExecutor) context;
+        }
         withRootSelector(rootSelector);
     }
 
@@ -35,11 +44,7 @@ public class ReactWebDriver {
         javascriptExecutor.executeAsyncScript("window.resq.waitToLoadReact().then(arguments[arguments.length-1])");
     }
 
-    public ReactComponent getComponent(IFilterableBy by) {
-        return new ReactComponent(javascriptExecutor, by.getFilter());
-    }
-
-    public ReactComponent getComponent(IFilterableBy by, Integer index) {
-        return new ReactComponent(javascriptExecutor, by.getFilter()).nthIndex(index);
+    public ReactComponent getComponent(WebElement element) {
+        return new ReactComponent(this.javascriptExecutor, element);
     }
 }
